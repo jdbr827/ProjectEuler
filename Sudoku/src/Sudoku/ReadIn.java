@@ -13,9 +13,13 @@ public class ReadIn {
 		File file = new File("src\\Sudoku\\p096_sudoku.txt");
 		BufferedReader br = new BufferedReader(new FileReader(file));
 
-		String st;
-		while ((st = br.readLine()) != null) {
-			System.out.println(st);
-		}
+//		String st;
+//		while ((st = br.readLine()) != null) {
+//			System.out.println(st);
+		
+		br.readLine(); // Grid 01
+	
+		SudokuGame game01 = new SudokuGame(br);
+		System.out.println(game01.toString());
 	}
 }
