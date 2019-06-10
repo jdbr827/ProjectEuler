@@ -20,6 +20,7 @@ public class ReadIn {
 		br.readLine(); // Grid 01
 	
 		SudokuGame game01 = new SudokuGame(br);
+		game01.solve();
 		System.out.println(game01.toString());
 	}
 }
