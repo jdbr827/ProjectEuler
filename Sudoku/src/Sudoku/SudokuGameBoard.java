@@ -12,7 +12,7 @@ public class SudokuGameBoard {
 	/**
 	 * The actual current game board.
 	 * 
-	 * if !board[i][j].isSolved(), then it is unsolved otherwise, board[i][j] is the
+	 * if !board[i][j].isSolved(), then it is unsolved otherwise, board[i][j].val is the
 	 * established solution for it
 	 */
 	public Entry[][] board;
@@ -31,10 +31,18 @@ public class SudokuGameBoard {
 		return;
 	}
 		
-	public boolean enforce_unequal_entries_constraint(int row1, int col1, int row2, int col2) throws NoSolutionError {
-		Entry entry1 = board[row1][col1];
-		Entry entry2 = board[row2][col2];
-		
+	
+	/**
+	 * Used when enforcing an UnequalEntriesConstraint on the board. Likely the one to be called
+	 * @param this_constraint
+	 * @return
+	 * @throws NoSolutionError
+	 */
+	public boolean enforce_unequal_entries_constraint(UnequalEntriesConstraint this_constraint) throws NoSolutionError {
+		return enforce_unequal_entries_constraint(this_constraint.row1, this_constraint.col1, this_constraint.row2, this_constraint.col2);
+	}
+	
+	public boolean enforce_unequal_entries_constraint(Entry entry1, Entry entry2) throws NoSolutionError {
 		if (entry1.is_solved() && entry2.is_solved()) {
 			if (entry1.val == entry2.val) {
 				throw new NoSolutionError();
@@ -54,6 +62,13 @@ public class SudokuGameBoard {
 		}
 		
 		return false;
+	}
+	public boolean enforce_unequal_entries_constraint(int row1, int col1, int row2, int col2) throws NoSolutionError {
+		Entry entry1 = board[row1][col1];
+		Entry entry2 = board[row2][col2];
+		return enforce_unequal_entries_constraint(entry1, entry2);
+		
+		
 	}
 		
 			
@@ -82,8 +97,6 @@ public class SudokuGameBoard {
 
 	}
 
-	public boolean enforce_unequal_entries_constraint(Unequal_Entries_Constraint this_constraint) throws NoSolutionError {
-		return enforce_unequal_entries_constraint(this_constraint.row1, this_constraint.col1, this_constraint.row2, this_constraint.col2);
-	}
+
 	
 }
