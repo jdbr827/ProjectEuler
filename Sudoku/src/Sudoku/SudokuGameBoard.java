@@ -30,7 +30,25 @@ public class SudokuGameBoard {
 		this.board = board;
 		return;
 	}
+
+	public SudokuGameBoard(Entry[][] board) {
+		this.board = board;
 		
+	}
+	/**
+	 * Does a deep copy of this game board.
+	 * @return
+	 */
+	public SudokuGameBoard copy() {
+		Entry[][] new_board = new Entry[9][9];
+		for (int i=0; i<9; i++) {
+			for (int j=0; j<9; j++) {
+				new_board[i][j] = board[i][j].copy();
+			}
+		}
+		return new SudokuGameBoard(new_board);
+		
+	}
 	
 	/**
 	 * Used when enforcing an UnequalEntriesConstraint on the board. Likely the one to be called

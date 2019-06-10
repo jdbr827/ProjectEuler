@@ -15,7 +15,26 @@ public class Entry {
 	
 	int val = UNSOLVED; 
 	List<Integer> possibilities = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9)); 
+	
+	
 	Entry(){}
+	
+	Entry(int val, List<Integer> possibilities) {
+		this.val = val;
+		this.possibilities = possibilities;
+	}
+	
+	/**
+	 * Does a deep copy of this entry.
+	 * @return
+	 */
+	Entry copy() {
+		List<Integer> new_possibilities = new ArrayList<Integer>();
+		for (Integer poss : this.possibilities) {
+			new_possibilities.add(poss);
+		}
+		return new Entry(this.val, new_possibilities);
+	}
 	
 	boolean is_solved() {
 		return val != UNSOLVED;
@@ -24,6 +43,8 @@ public class Entry {
 	void solve(int ans) {
 		val = ans;
 	}
+	
+	
 	
 	void remove_possibility(int poss) throws NoSolutionError {
 		if (is_solved()) {
@@ -38,6 +59,8 @@ public class Entry {
 			val = possibilities.get(0);
 		}
 	}
+	
+	
 	
 	
 

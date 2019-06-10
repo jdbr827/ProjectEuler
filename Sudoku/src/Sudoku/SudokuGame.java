@@ -72,6 +72,24 @@ public class SudokuGame {
 	}
 	
 	
+	public SudokuGame(SudokuGameBoard board, Queue<UnequalEntriesConstraint> constraintQueue) {
+		this.board = board;
+		this.constraintQueue = constraintQueue;
+	}
+	
+	public SudokuGame copy() {
+		// copy the constraintqueue.
+		// Note this way of doing it cycles through it, ultimately maintaining (and thus copying) order.
+		Queue<UnequalEntriesConstraint> new_queue = new LinkedList<UnequalEntriesConstraint>();
+		for (int i = 0; i < constraintQueue.size(); i++) {
+			UnequalEntriesConstraint this_constraint = constraintQueue.remove();
+			new_queue.add(this_constraint);
+			constraintQueue.add(this_constraint);
+		}
+		
+		return new SudokuGame(this.board.copy(), new_queue);
+	}
+	
 	public String toString() {
 		return board.toString();
 	}
