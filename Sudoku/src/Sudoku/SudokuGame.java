@@ -96,12 +96,24 @@ public class SudokuGame {
 
 	
 	public void solve() throws NoSolutionError {
+		
+		/*
+		 * waitingConstraintQueue keeps track of constraints that are unresolved, and have not been
+		 * checked since the last insight was made (here specifically, the last possibility removed)
+		 */
+		Queue<UnequalEntriesConstraint> waitingConstraintQueue = new LinkedList<UnequalEntriesConstraint>();
+		
 		while (!constraintQueue.isEmpty()) {
 				UnequalEntriesConstraint this_constraint = constraintQueue.remove();
-				if (!board.enforce_unequal_entries_constraint(this_constraint)) {
-					constraintQueue.add(this_constraint);
+				if (board.enforce_unequal_entries_constraint(this_constraint)){
+					constraintQueue.addAll(waitingConstraintQueue);
+					waitingConstraintQueue.clear();
+				} else {
+					waitingConstraintQueue.add(this_constraint);
 				}
+				System.out.println(constraintQueue.size());
 			}
+		
 		return;
 	}
 }
