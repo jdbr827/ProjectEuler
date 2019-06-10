@@ -17,10 +17,13 @@ public class ReadIn {
 //		while ((st = br.readLine()) != null) {
 //			System.out.println(st);
 		
-		br.readLine(); // Grid 01
-	
-		SudokuGame game01 = new SudokuGame(br);
-		game01.solve();
-		System.out.println(game01.toString());
+		for (int puzzle_num = 0; puzzle_num < 50; puzzle_num++) {
+			br.readLine(); // Grid 01 (or whatever number)
+			System.out.println(puzzle_num);
+			SudokuGame game = new SudokuGame(br);
+			game.solve();
+			System.out.println(game.toString());
+		}
+		
 	}
 }
