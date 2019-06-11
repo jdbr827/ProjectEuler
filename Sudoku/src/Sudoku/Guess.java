@@ -1,7 +1,6 @@
 package Sudoku;
 
 public class Guess {
-	public static final int NO_GUESS = -1;
 	public int row;
 	public int col;
 	public int val;

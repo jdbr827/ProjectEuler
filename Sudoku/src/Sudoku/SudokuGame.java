@@ -111,9 +111,35 @@ public class SudokuGame {
 				} else {
 					waitingConstraintQueue.add(this_constraint);
 				}
-				System.out.println(constraintQueue.size());
+				//System.out.println(constraintQueue.size());
 			}
 		
-		return;
+		if (waitingConstraintQueue.isEmpty()) {
+			// the puzzle is solved;
+			return;
+		}
+		
+		Guess guess = board.nextGuess();
+		//System.out.println(guess.toString());
+		
+		
+		// in the new game, the constraint queue is our waitingConstraintqueue.
+		SudokuGame new_game = this.copy();
+		new_game.board.board[guess.row][guess.col].solve(guess.val); // make the assignment
+		new_game.constraintQueue.addAll(waitingConstraintQueue); 
+		
+		try {
+			new_game.solve();
+			board = new_game.board;
+		} catch (NoSolutionError e) {
+			board.fixGuess(guess);
+			constraintQueue.addAll(waitingConstraintQueue);
+			waitingConstraintQueue.clear();
+			solve();
+			
+			
+			
+		}
+		
 	}
 }

@@ -35,6 +35,8 @@ public class SudokuGameBoard {
 		this.board = board;
 		
 	}
+	
+	
 	/**
 	 * Does a deep copy of this game board.
 	 * @return
@@ -50,6 +52,24 @@ public class SudokuGameBoard {
 		
 	}
 	
+	public Guess nextGuess() {
+		for (int i=0; i<9; i++) {
+			for (int j=0; j<9; j++) {
+				if (!board[i][j].is_solved()) {
+					return new Guess(i, j, board[i][j].possibilities.get(0));
+				}
+			}
+		}
+		// Execution should never reach here
+		return null;
+	}
+	
+	
+	public void fixGuess(Guess guess) throws NoSolutionError {
+		Entry entry = board[guess.row][guess.col];
+		entry.remove_possibility(guess.val);
+		
+	}
 	/**
 	 * Used when enforcing an UnequalEntriesConstraint on the board. Likely the one to be called
 	 * @param this_constraint
