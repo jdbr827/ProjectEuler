@@ -1,0 +1,64 @@
+graph {
+	1
+	2
+	3
+	4
+	5
+	6
+	7
+	8
+	9
+	10
+	11
+	12
+	13
+	14
+	15
+	16
+	17
+	18
+	19
+	20
+	21
+	22
+	23
+	24
+	25
+	26
+	27
+	28
+	29
+	30
+	31
+	32
+	33
+	34
+	35
+	36
+	1 -- 35 [color=green]
+	2 -- 13 [color=blue]
+	2 -- 22 [color=green]
+	3 -- 36 [color=green]
+	4 -- 30 [color=blue]
+	4 -- 28 [color=green]
+	5 -- 27 [color=blue]
+	5 -- 25 [color=green]
+	6 -- 16 [color=blue]
+	7 -- 18 [color=green]
+	9 -- 23 [color=green]
+	10 -- 18 [color=blue]
+	12 -- 35 [color=blue]
+	13 -- 19 [color=green]
+	14 -- 19 [color=blue]
+	14 -- 33 [color=green]
+	15 -- 20 [color=blue]
+	15 -- 34 [color=green]
+	17 -- 26 [color=blue]
+	20 -- 24 [color=green]
+	21 -- 32 [color=blue]
+	22 -- 33 [color=blue]
+	24 -- 34 [color=blue]
+	25 -- 28 [color=blue]
+	26 -- 29 [color=green]
+	27 -- 30 [color=green]
+}
